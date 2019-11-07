@@ -1,2 +1,3 @@
-# ols-geocoder-cpf-plugin
-CPF Plugin for Batch Geocoder
+# ols-cpf-plugin
+
+Batch Geocoder running in CPF
