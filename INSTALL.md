@@ -36,7 +36,7 @@ mvn clean install
 
 Add the plugin module into CPF as per the directions: https://bcgov.github.io/cpf/admin.html#Add_Module
 
-The Maven module Id is (something like): ca.bc.gov.ols:ols-geocoder-cpf-plugin:4.0.0-SNAPSHOT
+The Maven module Id is (something like): `ca.bc.gov.ols:ols-geocoder-cpf-plugin:4.0.0-SNAPSHOT`
 
 
 ## Configure the plugin module using CPF Configuration Properties
