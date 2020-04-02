@@ -44,8 +44,8 @@ public class GeocoderPlugin {
 	private GeocodeQuery query = new GeocodeQuery();
 	private List<AddressResult> results;
 	
-	private double resultScaleXy;
-	private int resultSrid;
+	private double resultScaleXy = 1000;
+	private int resultSrid = 3005;
 	
 	private org.locationtech.jts.geom.GeometryFactory ltgf = new org.locationtech.jts.geom.GeometryFactory(new org.locationtech.jts.geom.PrecisionModel(1000), 3005);
 	
