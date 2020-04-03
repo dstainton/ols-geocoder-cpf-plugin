@@ -38,16 +38,17 @@ import ca.bc.gov.open.cpf.plugin.api.ResultList;
 		maxConcurrentRequests = 16,
 		numRequestsPerWorker = 1000)
 public class GeocoderPlugin {
+	
 	public static final String PLUGIN_NAME = "geocoder";
+
+	public static final GeometryFactory GEOMETRY_FACTORY = GeometryFactory.getFactory(3005, 2);
+	private static final org.locationtech.jts.geom.GeometryFactory LT_GEOMETRY_FACTORY = new org.locationtech.jts.geom.GeometryFactory(new org.locationtech.jts.geom.PrecisionModel(1000), 3005);
+	private static final CpfGeometryReprojector REPROJECTOR = new CpfGeometryReprojector(LT_GEOMETRY_FACTORY);
+	
 	private IGeocoder geocoder;
 	
 	private GeocodeQuery query = new GeocodeQuery();
-	private List<AddressResult> results;
-	
-	private double resultScaleXy = 1000;
-	private int resultSrid = 3005;
-	
-	private org.locationtech.jts.geom.GeometryFactory ltgf = new org.locationtech.jts.geom.GeometryFactory(new org.locationtech.jts.geom.PrecisionModel(1000), 3005);
+	private List<AddressResult> results;	
 	
 	public void setGeocoder(IGeocoder geocoder) {
 		this.geocoder = geocoder;
@@ -242,43 +243,30 @@ public class GeocoderPlugin {
 			primaryGeometry = true)
 	public void setParcelPoint(Point parcelPoint) {
 		if(parcelPoint != null) {
-			query.setParcelPointGeom(ltgf.createPoint(new org.locationtech.jts.geom.Coordinate(parcelPoint.getX(), parcelPoint.getY())));
+			query.setParcelPointGeom(LT_GEOMETRY_FACTORY.createPoint(new org.locationtech.jts.geom.Coordinate(parcelPoint.getX(), parcelPoint.getY())));
 		}
 	}
 	
-	/* magic function to get the ResultScaleXy value for the request */
-	public void setResultScaleXy(final double resultScaleXy) {
-		this.resultScaleXy = resultScaleXy;
-	}
-	
-	/* magic function to get the ResultSrid value for the request */
-	public void setResultSrid(final int resultSrid) {
-		this.resultSrid = resultSrid;
-	}
-	
 	public void execute() {
-		query.resolveAndValidate(geocoder.getConfig(), ltgf, new CpfGeometryReprojector(ltgf));
+		query.resolveAndValidate(geocoder.getConfig(), LT_GEOMETRY_FACTORY, REPROJECTOR);
 		SearchResults sr = geocoder.geocode(query);
 		results = new ArrayList<AddressResult>();
 		GeocoderConfig config = null;
 		if(geocoder.getDatastore() != null) {
 			config = geocoder.getDatastore().getConfig();
 		}
-		GeometryFactory gf = GeometryFactory.getFactory(resultSrid, resultScaleXy);
 		for(GeocodeMatch match : sr.getMatches()) {
-			AddressResult result = new AddressResult(match, sr, config, gf);
+			AddressResult result = new AddressResult(match, sr, config);
 			results.add(result);
 		}
 	}
-	//GeometryFactory.getFactory(resultSrid, resultScaleXy).createPoint(new org.locationtech.jts.geom.Coordinate(parcelPoint.getX(), parcelPoint.getY())));
+	
 	public void testExecute() {
-		query.resolveAndValidate(geocoder.getDatastore().getConfig(), ltgf, new CpfGeometryReprojector(ltgf));
+		query.resolveAndValidate(geocoder.getDatastore().getConfig(), LT_GEOMETRY_FACTORY, REPROJECTOR);
 		results = new ArrayList<AddressResult>();
-		SearchResults sr = DummyGeocoder.getDummyResults(query, GeocoderDataStore
-				.getGeometryFactory());
-		GeometryFactory gf = GeometryFactory.getFactory(resultSrid, resultScaleXy);
+		SearchResults sr = DummyGeocoder.getDummyResults(query, GeocoderDataStore.getGeometryFactory());
 		for(GeocodeMatch match : sr.getMatches()) {
-			AddressResult result = new AddressResult(match, sr, null, gf);
+			AddressResult result = new AddressResult(match, sr, null);
 			results.add(result);
 		}
 	}
