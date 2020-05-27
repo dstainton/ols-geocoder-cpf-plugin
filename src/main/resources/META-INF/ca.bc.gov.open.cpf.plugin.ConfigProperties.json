@@ -1,0 +1,32 @@
+[
+  {
+    "name": "geocoderFactory.dummyMode",
+    "type": "string",
+    "value": "false"
+  },
+  {
+    "name": "geocoderFactory.cassandraContactPoint",
+    "type": "string",
+    "value": "cassandra"
+  },
+  {
+    "name": "geocoderFactory.cassandraLocalDatacenter",
+    "type": "string",
+    "value": "datacenter1"
+  },
+  {
+    "name": "geocoderFactory.cassandraKeyspace",
+    "type": "string",
+    "value": "bgeo"
+  },
+  {
+    "name": "geocoderFactory.cassandraReplicationFactor",
+    "type": "string",
+    "value": "2"
+  },
+  {
+    "name": "geocoderFactory.configurationStore",
+    "type": "string",
+    "value": "ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore"
+  }
+]

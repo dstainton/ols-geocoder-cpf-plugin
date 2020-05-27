@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2008-2015, Province of British Columbia All rights reserved. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <groupId>ca.bc.gov.ols</groupId>
+	<artifactId>ols-geocoder-cpf-plugin</artifactId>
+    <version>4.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>OLS Geocoder CPF Plugin</name>
+	
+	<url>https://bcgov.github.io/ols-geocoder-cpf/</url>
+
+	<organization>
+		<name>Province of British Columbia</name>
+		<url>https://www.gov.bc.ca/</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:https://github.com/bcgov/ols-geocoder-cpf.git</connection>
+		<developerConnection>scm:git:git@github.com:bcgov/ols-geocoder-cpf.git</developerConnection>
+		<url>https://github.com/bcgov/ols-geocoder-cpf</url>
+	</scm>
+
+	<issueManagement>
+		<system>github.com</system>
+		<url>https://github.com/bcgov/ols-geocoder-cpf/issues</url>
+	</issueManagement>
+
+	<developers>
+		<developer>
+			<name>Chris Hodgson</name>
+			<email>chodgson@refractions.net</email>
+			<organization>Refractions Research Inc.</organization>
+			<organizationUrl>http://www.refractions.net/</organizationUrl>
+			<timezone>PST</timezone>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>Michael Ross</name>
+			<email>Michael.RA.Ross@gov.bc.ca</email>
+			<organization>Province of British Columbia</organization>
+			<organizationUrl>https://www.gov.bc.ca</organizationUrl>
+			<timezone>PST</timezone>
+		</contributor>
+		<contributor>
+			<name>Brian Kelsey</name>
+			<email>Brian.Kelsey@gov.bc.ca</email>
+			<organization>Province of British Columbia</organization>
+			<organizationUrl>https://www.gov.bc.ca</organizationUrl>
+			<timezone>PST</timezone>
+		</contributor>
+	</contributors>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<ca.bc.gov.open.cpf.version>6.0.0-SNAPSHOT</ca.bc.gov.open.cpf.version>
+        <ca.bc.gov.ols.geocoder.version>4.0.0-SNAPSHOT</ca.bc.gov.ols.geocoder.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<release>11</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<configuration>
+					<includePom>true</includePom>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+					<execution>
+						<id>javadoc-html</id>
+						<phase>install</phase>
+						<configuration>
+							<quiet>true</quiet>
+							<show>public</show>
+						</configuration>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<header>src/license/license-header.txt</header>
+					<properties>
+						<name>OpenLocationServer</name>
+						<owner>Province of British Columbia</owner>
+						<years>2008-2019</years>
+					</properties>
+					<excludes>
+						<exclude>**/*.txt</exclude>
+						<exclude>**/*.TXT</exclude>
+						<exclude>data/**</exclude>
+						<exclude>**/js/lib/**</exclude>
+						<exclude>src/test/resources/**</exclude>
+						<exclude>src/main/resources/**</exclude>
+						<exclude>**/Jenkinsfile</exclude>
+					</excludes>
+					<keywords>
+						<keyword>copyright</keyword>
+						<keyword>license</keyword>
+					</keywords>
+				</configuration>
+				<!-- executions>
+					<execution>
+						<inherited>false</inherited>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions -->
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.8</version>
+				<!-- executions>
+					<execution>
+						<id>aggregate-add-third-party</id>
+						<inherited>true</inherited>
+						<configuration>
+							<force>true</force>
+							<outputDirectory>src/license/</outputDirectory>
+							<useMissingFile>true</useMissingFile>
+							<licenseMerges>
+								<licenseMerge>apache_2_0|apache_v2</licenseMerge>
+								<licenseMerge>apache_2_0|The Apache Software License, Version 2.0</licenseMerge>
+								<licenseMerge>apache_2_0|Apache License, Version 2.0</licenseMerge>
+								<licenseMerge>apache_2_0|Apache License 2.0</licenseMerge>
+								<licenseMerge>apache_2_0|Apache License</licenseMerge>
+								<licenseMerge>apache_2_0|Apache 2.0 License</licenseMerge>
+								<licenseMerge>apache_2_0|Apache 2</licenseMerge>
+								<licenseMerge>apache_2_0|ASF 2.0</licenseMerge>
+								<licenseMerge>bsd_2|The BSD License</licenseMerge>
+								<licenseMerge>bsd_2|BSD License</licenseMerge>
+								<licenseMerge>cddl_1_0|Common Development and Distribution License (CDDL) v1.0</licenseMerge>
+								<licenseMerge>cddl_1_0|COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</licenseMerge>
+								<licenseMerge>epl_1|Eclipse Public License - v 1.0</licenseMerge>
+								<licenseMerge>lgpl_2_1|LGPL 2.1</licenseMerge>
+								<licenseMerge>lgpl_2_1|GNU Lesser General Public License</licenseMerge>
+								<licenseMerge>lgpl_2_1|Lesser General Public License (LGPL)</licenseMerge>
+								<licenseMerge>mit|MIT License</licenseMerge>
+								<licenseMerge>mpl_1_1|MPL 1.1</licenseMerge>
+							</licenseMerges>
+						</configuration>
+						<goals>
+							<goal>aggregate-add-third-party</goal>
+						</goals>
+					</execution>
+				</executions -->
+			</plugin>
+
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											license-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.8,)
+										</versionRange>
+										<goals>
+											<goal>
+												aggregate-add-third-party
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore/>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>ca.bc.gov.open.cpf</groupId>
+				<artifactId>cpf-api-plugin</artifactId>
+				<version>${ca.bc.gov.open.cpf.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<distributionManagement>
+		<repository>
+			<id>release</id>
+			<name>http://apps.bcgov-releases</name>
+			<url>http://apps.bcgov/artifactory/libs-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>http://apps.bcgov-snapshots</name>
+			<url>http://apps.bcgov/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+          <groupId>javax.annotation</groupId>
+          <artifactId>javax.annotation-api</artifactId>
+          <version>1.3.1</version>
+        </dependency>
+		<dependency>
+			<groupId>ca.bc.gov.ols</groupId>
+			<artifactId>ols-geocoder-core</artifactId>
+			<version>${ca.bc.gov.ols.geocoder.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>ca.bc.gov.open.cpf</groupId>
+			<artifactId>cpf-api-plugin</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.vividsolutions</groupId>
+    		<artifactId>jts</artifactId>
+    		<version>1.13</version>
+    		<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
