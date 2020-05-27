@@ -36,7 +36,7 @@ mvn clean install
 
 Add the plugin module into CPF as per the directions: https://bcgov.github.io/cpf/admin.html#Add_Module
 
-The Maven module Id is (something like): ca.bc.gov.ols:ols-geocoder-cpf-plugin:4.0.0-SNAPSHOT
+The Maven module Id is (something like): `ca.bc.gov.ols:ols-geocoder-cpf-plugin:4.0.0-SNAPSHOT`
 
 
 ## Configure the plugin module using CPF Configuration Properties
@@ -45,12 +45,14 @@ CPF allows plugin modules to have configuration properties, and provides an admi
 
 The ols-geocoder-cpf-plugin has the following configuration properties:
 
-geocoderFactory.dummyMode: true/false - set to true to test if the geocoder plugin module runs without requiring a complete configuration or data directory.
-geocoderFactory.cassandraContactPoint: string - defaults to "cassandra" - the name of the cassandra server for configuration
-geocoderFactory.cassandraLocalDatacenter: string - defaults to "datacenter1" - the name of the local datacenter for the cassandra load balancing driver
-geocoderFactory.cassandraKeyspace: string - defaults to "bgeo" - the name of the cassandra namespace
-geocoderFactory.cassandraReplicationFactor: integer - defaults to 2 - the replication factor to set the cassandra namespace to if it has not alrady been created. We recommend creating your cassandra namespace manually before starting the geocoder, to allow for all configuration options 
-geocoderFactory.configurationStore: string - defaults to: "ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore" - The name of the java class to use for configuration. An alternative would be FileGeocoderConfigurationStore, however this is not yet supported in the CPF plugin.
+| Prop (`geocoderFactory.*`) | Type | Description |
+| ---- | ---- | ----------- |
+|`dummyMode`|  true/false | set to true to test if the geocoder plugin module runs without requiring a complete configuration or data directory.|
+|`cassandraContactPoint`|  string - defaults to "`cassandra`" | the name of the cassandra server for configuration |
+|`cassandraLocalDatacenter`| string - defaults to "`datacenter1`" | the name of the local datacenter for the cassandra load balancing driver|
+|`cassandraKeyspace`| string - defaults to "`bgeo`" | the name of the cassandra namespace|
+|`cassandraReplicationFactor`| integer - defaults to `2` | the replication factor to set the cassandra namespace to if it has not alrady been created. We recommend creating your cassandra namespace manually before starting the geocoder, to allow for all configuration options |
+|`configurationStore`| string - defaults to:<br /> "`ca.bc.gov.ols.geocoder.config`<br />`.CassandraGeocoderConfigurationStore`" | The name of the java class to use for configuration. An alternative would be FileGeocoderConfigurationStore, however this is not yet supported in the CPF plugin.|
 
 ## Restart the ols-geocoder-cpf-plugin module
 
