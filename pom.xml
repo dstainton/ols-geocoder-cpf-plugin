@@ -63,7 +63,7 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<ca.bc.gov.open.cpf.version>6.0.0-SNAPSHOT</ca.bc.gov.open.cpf.version>
+		<ca.bc.gov.open.cpf.version>6.1.0-SNAPSHOT</ca.bc.gov.open.cpf.version>
         <ca.bc.gov.ols.geocoder.version>4.0.0-SNAPSHOT</ca.bc.gov.ols.geocoder.version>
 	</properties>
 
