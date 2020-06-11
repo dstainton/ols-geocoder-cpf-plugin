@@ -34,15 +34,13 @@ public class AddressResult {
 	private GeocodeMatch match;
 	private GeocoderConfig config;
 	private SearchResults searchResults;
-	private GeometryFactory gf;
 	
 	// private String debugInfo;
 	
-	public AddressResult(GeocodeMatch match, SearchResults searchResults, GeocoderConfig config, GeometryFactory gf) {
+	public AddressResult(GeocodeMatch match, SearchResults searchResults, GeocoderConfig config) {
 		this.match = match;
 		this.searchResults = searchResults;
 		this.config = config;
-		this.gf = gf;
 	}
 	
 	@ResultAttribute(index = 10, description = "A unique identifier you have assigned to an address occupant.")
@@ -231,7 +229,7 @@ public class AddressResult {
 			primaryGeometry = true)
 	public Point getLocation() {
 		org.locationtech.jts.geom.Point p = match.getLocation();
-		return gf.createPoint(p.getX(), p.getY());
+		return GeocoderPlugin.GEOMETRY_FACTORY.createPoint(p.getX(), p.getY());
 	}
 	
 	@ResultAttribute(index = 210, length = 25, description = "Coarse - Street, Locality, or Province level match; Low - digitized or interpolated along an address range; Medium - interpolated within a Parcel; High - observed using GPS or survey instruments")
