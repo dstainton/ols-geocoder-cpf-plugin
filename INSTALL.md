@@ -48,11 +48,12 @@ The ols-geocoder-cpf-plugin has the following configuration properties:
 | Prop (`geocoderFactory.*`) | Type | Description |
 | ---- | ---- | ----------- |
 |`dummyMode`|  true/false | set to true to test if the geocoder plugin module runs without requiring a complete configuration or data directory.|
-|`cassandraContactPoint`|  string - defaults to "`cassandra`" | the name of the cassandra server for configuration |
+|`configurationStore`| string - defaults to:<br /> "`ca.bc.gov.ols.geocoder.config`<br />`.CassandraGeocoderConfigurationStore`" | The name of the java class to use for configuration. An alternative would be `ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore`. This value determines which of the other configuration parameters to use, either the cassandra-related parameters, or the fileConfigurationUrl.|
+|`cassandraContactPoint`|  string - defaults to "`cassandra`" | the name of the cassandra server for configuration.|
 |`cassandraLocalDatacenter`| string - defaults to "`datacenter1`" | the name of the local datacenter for the cassandra load balancing driver|
 |`cassandraKeyspace`| string - defaults to "`bgeo`" | the name of the cassandra namespace|
 |`cassandraReplicationFactor`| integer - defaults to `2` | the replication factor to set the cassandra namespace to if it has not alrady been created. We recommend creating your cassandra namespace manually before starting the geocoder, to allow for all configuration options |
-|`configurationStore`| string - defaults to:<br /> "`ca.bc.gov.ols.geocoder.config`<br />`.CassandraGeocoderConfigurationStore`" | The name of the java class to use for configuration. An alternative would be FileGeocoderConfigurationStore, however this is not yet supported in the CPF plugin.|
+|`fileConfigurationUrl`| string - defaults to:<br /> "`file:///c:/path/to/config/dir/`" | A URL path to a directory containing the configuration files. This must be a local file:// url, writable by the CPF application. If the directory is empty it will be populated with a default configuration. |
 
 ## Restart the ols-geocoder-cpf-plugin module
 
