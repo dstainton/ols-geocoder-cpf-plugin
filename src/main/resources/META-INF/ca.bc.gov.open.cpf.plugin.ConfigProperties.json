@@ -25,6 +25,11 @@
     "value": "2"
   },
   {
+    "name": "geocoderFactory.geocoderFactory.fileConfigurationUrl",
+    "type": "string",
+    "value": "file:///c:/path/to/config/dir/"
+  },
+  {
     "name": "geocoderFactory.configurationStore",
     "type": "string",
     "value": "ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore"
