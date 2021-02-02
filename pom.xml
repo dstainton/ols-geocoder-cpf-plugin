@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
     <groupId>ca.bc.gov.ols</groupId>
 	<artifactId>ols-geocoder-cpf-plugin</artifactId>
-    <version>4.0.2-SNAPSHOT</version>
+    <version>4.1.0-RC</version>
 	<packaging>jar</packaging>
 	<name>OLS Geocoder CPF Plugin</name>
-	
+
 	<url>https://bcgov.github.io/ols-geocoder-cpf/</url>
 
 	<organization>
@@ -60,11 +60,11 @@
 			<timezone>PST</timezone>
 		</contributor>
 	</contributors>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<ca.bc.gov.open.cpf.version>6.1.2-RELEASE</ca.bc.gov.open.cpf.version>
-        <ca.bc.gov.ols.geocoder.version>4.0.2-RELEASE</ca.bc.gov.ols.geocoder.version>
+        <ca.bc.gov.ols.geocoder.version>4.1.0-RC</ca.bc.gov.ols.geocoder.version>
 	</properties>
 
 	<build>
@@ -225,7 +225,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -253,7 +253,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
