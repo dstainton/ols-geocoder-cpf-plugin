@@ -236,19 +236,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<distributionManagement>
-		<repository>
-			<id>release</id>
-			<name>http://apps.bcgov-releases</name>
-			<url>http://apps.bcgov/artifactory/libs-release-local</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshot</id>
-			<name>http://apps.bcgov-snapshots</name>
-			<url>http://apps.bcgov/artifactory/libs-snapshot-local</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -279,4 +266,27 @@
     		<scope>provided</scope>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>virtual-repo</name>
+			<layout>default</layout>
+			<url>https://artifacts.developer.gov.bc.ca/artifactory/g988-libs</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>artifactory-ha-primary-0-releases</name>
+			<url>https://artifacts.developer.gov.bc.ca/artifactory/g988-release</url>
+		</repository>
+			<snapshotRepository>
+			<id>snapshots</id>
+			<name>artifactory-ha-primary-0-snapshots</name>
+			<url>https://artifacts.developer.gov.bc.ca/artifactory/g988-snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
