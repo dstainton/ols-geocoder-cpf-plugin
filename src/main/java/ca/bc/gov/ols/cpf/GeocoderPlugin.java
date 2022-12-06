@@ -138,10 +138,11 @@ public class GeocoderPlugin {
 	}
 	
 	@JobParameter
+	@AllowedValues(value = {"true", "on"})
 	@DefaultValue("true")
-	@RequestParameter(index = 17, description = "Include unmatched address details such as site name in results")
-	public void setEcho(boolean echo) {
-		query.setEcho(echo);
+	@RequestParameter(index = 17, description = "Include unmatched address details such as site name in results. Use of the value 'on' is deprecated; 'true' is preferred.")
+	public void setEcho(String echoText) {
+		query.setEcho(echoText == "true" || echoText == "on" ? true : false);
 	}
 	
 	@JobParameter
